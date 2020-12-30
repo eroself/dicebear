@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
  */
 @JsModule("./styles/shared-styles.js")
 @Viewport("width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes, viewport-fit=cover")
-@PWA(name = "VIDEO", shortName = "VIDEO")
+@PWA(name = "Jdenticon", shortName = "Jdenticon")
 @Route(value = "")
 @PageTitle("Jdenticon")
 public class JdenticonView extends VerticalLayout {
