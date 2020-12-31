@@ -7,7 +7,7 @@
         <packaging>war</packaging>
       </options>
     </properties>
-    <root id="archive" name="video.war">
+    <root id="archive" name="jdenticon.war">
       <element id="artifact" artifact-name="jdenticon:war exploded" />
     </root>
   </artifact>

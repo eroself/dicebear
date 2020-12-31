@@ -1,7 +1,10 @@
 package com.wontlost.views;
 
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.JsModule;
+import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H3;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.page.Viewport;
 import com.vaadin.flow.component.textfield.TextField;
@@ -9,8 +12,12 @@ import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.PWA;
+import com.vaadin.flow.server.StreamRegistration;
+import com.vaadin.flow.server.StreamResource;
 import com.wontlost.jdenticon.JdenticonVaadin;
 
+import java.io.ByteArrayInputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.regex.Pattern;
 
 /**
@@ -48,6 +55,34 @@ public class JdenticonView extends VerticalLayout {
         size.addValueChangeListener(e-> {
                     if(isNumeric(e.getValue())) {
                         jdenticonVaadin.setSize(Integer.parseInt(e.getValue()));
+                    } else {
+                        Div content = new Div();
+                        content.addClassName("my-style");
+                        content.setText("Input is not a number!");
+
+                        Notification notification = new Notification(content);
+                        notification.setDuration(3000);
+
+// @formatter:off
+                        String styles = ".my-style { "
+                                + "  color: red;"
+                                + " }";
+// @formatter:on
+
+                        /*
+                         * The code below register the style file dynamically. Normally you
+                         * use @StyleSheet annotation for the component class. This way is
+                         * chosen just to show the style file source code.
+                         */
+                        StreamRegistration resource = UI.getCurrent().getSession()
+                                .getResourceRegistry()
+                                .registerResource(new StreamResource("styles.css", () -> {
+                                    byte[] bytes = styles.getBytes(StandardCharsets.UTF_8);
+                                    return new ByteArrayInputStream(bytes);
+                                }));
+                        UI.getCurrent().getPage().addStyleSheet(
+                                "base://" + resource.getResourceUri().toString());
+                        notification.open();
                     }
                 });
         setAlignItems(Alignment.CENTER);
