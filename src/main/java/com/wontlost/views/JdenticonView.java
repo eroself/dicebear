@@ -57,14 +57,14 @@ public class JdenticonView extends VerticalLayout {
                         jdenticonVaadin.setSize(Integer.parseInt(e.getValue()));
                     } else {
                         Div content = new Div();
-                        content.addClassName("my-style");
-                        content.setText("Input is not a number!");
+                        content.addClassName("size-style");
+                        content.setText("Input size is not a number!");
 
                         Notification notification = new Notification(content);
                         notification.setDuration(3000);
 
 // @formatter:off
-                        String styles = ".my-style { "
+                        String styles = ".size-style { "
                                 + "  color: red;"
                                 + " }";
 // @formatter:on
