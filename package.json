@@ -59,7 +59,7 @@
       "webpack-merge": "4.2.2",
       "webpack-dev-server": "3.11.0"
     },
-    "hash": "555c1dc6eb184425227563e9b19d27e3a5bc45d4d4e45d4fffee0262690a3df6"
+    "hash": "953d857fc0faa6d3f79926420763287de6b364d814f00a1ee13f0a54c648c73e"
   },
   "dependencies": {
     "@polymer/iron-icon": "3.0.1",
@@ -105,7 +105,16 @@
     "@vaadin/vaadin-time-picker": "2.4.0",
     "@vaadin/vaadin-upload": "4.4.1",
     "@webcomponents/webcomponentsjs": "^2.2.10",
-    "jdenticon": "^3.1.0",
+    "@dicebear/avatars": "^4.5.2",
+    "@dicebear/avatars-avataaars-sprites": "^4.5.2",
+    "@dicebear/avatars-bottts-sprites": "^4.5.2",
+    "@dicebear/avatars-female-sprites": "^4.5.2",
+    "@dicebear/avatars-gridy-sprites": "^4.5.2",
+    "@dicebear/avatars-human-sprites": "^4.5.2",
+    "@dicebear/avatars-identicon-sprites": "^4.5.2",
+    "@dicebear/avatars-initials-sprites": "^4.5.2",
+    "@dicebear/avatars-jdenticon-sprites": "^4.5.2",
+    "@dicebear/avatars-male-sprites": "^4.5.2",
     "lit-element": "^2.2.1"
   },
   "devDependencies": {

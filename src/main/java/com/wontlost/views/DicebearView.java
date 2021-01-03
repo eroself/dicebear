@@ -7,6 +7,7 @@ import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.page.Viewport;
+import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
@@ -14,10 +15,15 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.server.StreamRegistration;
 import com.vaadin.flow.server.StreamResource;
-import com.wontlost.jdenticon.JdenticonVaadin;
+import com.wontlost.dicebear.Constants.*;
+import com.wontlost.dicebear.DicebearVaadin;
+import com.wontlost.dicebear.Options;
 
 import java.io.ByteArrayInputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 import java.util.regex.Pattern;
 
 /**
@@ -25,10 +31,10 @@ import java.util.regex.Pattern;
  */
 @JsModule("./styles/shared-styles.js")
 @Viewport("width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes, viewport-fit=cover")
-@PWA(name = "Jdenticon", shortName = "Jdenticon")
+@PWA(name = "Dicebear", shortName = "Dicebear")
 @Route(value = "")
-@PageTitle("Jdenticon")
-public class JdenticonView extends VerticalLayout {
+@PageTitle("Dicebear")
+public class DicebearView extends VerticalLayout {
 
     private Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
 
@@ -39,22 +45,50 @@ public class JdenticonView extends VerticalLayout {
         return pattern.matcher(strNum).matches();
     }
 
-    JdenticonView() {
+    private String nextColor() {
+        Random random = new Random();
+
+        // create a big random number - maximum is ffffff (hex) = 16777215 (dez)
+        int nextInt = random.nextInt(0xffffff + 1);
+
+        // format it as hexadecimal string (with hashtag and leading zeros)
+        return String.format("#%06x", nextInt);
+    }
+
+    DicebearView() {
         super();
+        Options options = new Options();
         TextField value = new TextField("value");
         value.setPlaceholder("wontlost");
         TextField size = new TextField("size");
         size.setPlaceholder("100");
+        Select<Style> select = new Select<>();
+        select.setLabel("Style");
+        List<Style> styleList = Arrays.asList(Style.values());
+        select.setItemLabelGenerator(Style::name);
+        select.setItems(styleList);
+        select.setValue(Style.human);
         add(new H3("Try it yourself"));
-        add(value, size);
-        JdenticonVaadin jdenticonVaadin = new JdenticonVaadin("wontlost", 100);
-        add(jdenticonVaadin);
+        DicebearVaadin dicebearVaadin = new DicebearVaadin();
+        dicebearVaadin.setValue("wontlost");
+        dicebearVaadin.setStyle(Style.avataaars);
+//        options.setBackground("white").setDataUri(false)
+//                .setWidth(100).setHeight(100).setMargin(0).setRadius(50);
+
+        add(select, value, size, dicebearVaadin);
         value.setValueChangeMode(ValueChangeMode.EAGER);
-        value.addValueChangeListener(e->jdenticonVaadin.setValue(e.getValue()));
+        value.addValueChangeListener(e-> {
+            dicebearVaadin.setValue(e.getValue());
+            options.setBackground(nextColor());
+            dicebearVaadin.setOptions(options);
+        });
         size.setValueChangeMode(ValueChangeMode.EAGER);
         size.addValueChangeListener(e-> {
+                    options.setBackground(nextColor());
                     if(isNumeric(e.getValue())) {
-                        jdenticonVaadin.setSize(Integer.parseInt(e.getValue()));
+                        options.setWidth(Integer.parseInt(e.getValue()));
+                        options.setHeight(Integer.parseInt(e.getValue()));
+                        dicebearVaadin.setOptions(options);
                     } else {
                         Div content = new Div();
                         content.addClassName("size-style");
@@ -85,6 +119,12 @@ public class JdenticonView extends VerticalLayout {
                         notification.open();
                     }
                 });
+
+        select.addValueChangeListener(event -> {
+            dicebearVaadin.setStyle(event.getValue());
+            options.setBackground(nextColor());
+            dicebearVaadin.setOptions(options);
+            });
         setAlignItems(Alignment.CENTER);
     }
 

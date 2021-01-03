@@ -1,10 +1,10 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="jdenticon:war exploded">
-    <output-path>$PROJECT_DIR$/target/jdenticon</output-path>
+  <artifact type="exploded-war" name="dicebear:war exploded">
+    <output-path>$PROJECT_DIR$/target/dicebear</output-path>
     <properties id="maven-jee-properties">
       <options>
         <exploded>true</exploded>
-        <module>jdenticon</module>
+        <module>dicebear</module>
         <packaging>war</packaging>
       </options>
     </properties>
@@ -122,11 +122,11 @@
           <element id="library" level="project" name="Maven: jakarta.xml.bind:jakarta.xml.bind-api:2.3.3" />
           <element id="library" level="project" name="Maven: jakarta.activation:jakarta.activation-api:1.2.2" />
           <element id="library" level="project" name="Maven: org.reactivestreams:reactive-streams:1.0.3" />
-          <element id="library" level="project" name="Maven: com.wontlost:jdenticon-vaadin:1.0.0" />
+          <element id="library" level="project" name="Maven: com.wontlost:dicebear-vaadin:1.0.0" />
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/target/jdenticon/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/target/dicebear/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="dicebear/web/Web" />
     </root>

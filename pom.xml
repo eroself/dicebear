@@ -223,7 +223,7 @@
 
         <dependency>
             <groupId>com.wontlost</groupId>
-            <artifactId>jdenticon-vaadin</artifactId>
+            <artifactId>dicebear-vaadin</artifactId>
             <version>1.0.0</version>
         </dependency>
 
@@ -232,7 +232,7 @@
 
     <build>
         <defaultGoal>spring-boot:run</defaultGoal>
-        <finalName>jdenticon</finalName>
+        <finalName>dicebear</finalName>
         <!-- The `pluginManagement` section allows listing plugin versions and their global
              configuration in one place. -->
         <pluginManagement>
