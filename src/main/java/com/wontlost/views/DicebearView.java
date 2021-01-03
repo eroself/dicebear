@@ -96,6 +96,7 @@ public class DicebearView extends VerticalLayout {
         });
         radius.addValueChangeListener(e->{
             options.setRadius(radius.getValue());
+            options.setMargin(radius.getValue()/5);
             dicebearVaadin.setOptions(options);
         });
         size.setValueChangeMode(ValueChangeMode.EAGER);
