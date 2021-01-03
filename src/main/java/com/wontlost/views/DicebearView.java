@@ -69,9 +69,9 @@ public class DicebearView extends VerticalLayout {
     DicebearView() {
         super();
         Options options = new Options();
-        TextField value = new TextField("value");
+        TextField value = new TextField("Value");
         value.setPlaceholder("wontlost");
-        TextField size = new TextField("size");
+        TextField size = new TextField("Size");
         size.setPlaceholder("100");
         Select<Style> select = new Select<>();
         select.setLabel("Style");
