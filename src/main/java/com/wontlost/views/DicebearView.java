@@ -1,5 +1,6 @@
 package com.wontlost.views;
 
+import com.vaadin.flow.component.HasValue;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.html.Div;
@@ -18,6 +19,7 @@ import com.vaadin.flow.server.StreamResource;
 import com.wontlost.dicebear.Constants.*;
 import com.wontlost.dicebear.DicebearVaadin;
 import com.wontlost.dicebear.Options;
+import org.vaadin.addon.sliders.PaperSlider;
 
 import java.io.ByteArrayInputStream;
 import java.nio.charset.StandardCharsets;
@@ -45,6 +47,15 @@ public class DicebearView extends VerticalLayout {
         return pattern.matcher(strNum).matches();
     }
 
+    private void changeColor(HasValue.ValueChangeEvent event, Options options, DicebearVaadin dicebearVaadin) {
+        if(event.getValue().equals(Style.initials)) {
+            options.setBackground(nextColor());
+        }else{
+            options.setBackground("transparent");
+        }
+        dicebearVaadin.setOptions(options);
+    }
+
     private String nextColor() {
         Random random = new Random();
 
@@ -67,7 +78,9 @@ public class DicebearView extends VerticalLayout {
         List<Style> styleList = Arrays.asList(Style.values());
         select.setItemLabelGenerator(Style::name);
         select.setItems(styleList);
-        select.setValue(Style.human);
+        select.setValue(Style.avataaars);
+        PaperSlider radius = new PaperSlider(0, 50, 0);
+
         add(new H3("Try it yourself"));
         DicebearVaadin dicebearVaadin = new DicebearVaadin();
         dicebearVaadin.setValue("wontlost");
@@ -75,20 +88,22 @@ public class DicebearView extends VerticalLayout {
 //        options.setBackground("white").setDataUri(false)
 //                .setWidth(100).setHeight(100).setMargin(0).setRadius(50);
 
-        add(select, value, size, dicebearVaadin);
+        add(select, value, size, radius, dicebearVaadin);
         value.setValueChangeMode(ValueChangeMode.EAGER);
         value.addValueChangeListener(e-> {
             dicebearVaadin.setValue(e.getValue());
-            options.setBackground(nextColor());
+            changeColor(e, options, dicebearVaadin);
+        });
+        radius.addValueChangeListener(e->{
+            options.setRadius(radius.getValue());
             dicebearVaadin.setOptions(options);
         });
         size.setValueChangeMode(ValueChangeMode.EAGER);
         size.addValueChangeListener(e-> {
-                    options.setBackground(nextColor());
                     if(isNumeric(e.getValue())) {
                         options.setWidth(Integer.parseInt(e.getValue()));
                         options.setHeight(Integer.parseInt(e.getValue()));
-                        dicebearVaadin.setOptions(options);
+                        changeColor(e, options, dicebearVaadin);
                     } else {
                         Div content = new Div();
                         content.addClassName("size-style");
@@ -122,9 +137,8 @@ public class DicebearView extends VerticalLayout {
 
         select.addValueChangeListener(event -> {
             dicebearVaadin.setStyle(event.getValue());
-            options.setBackground(nextColor());
-            dicebearVaadin.setOptions(options);
-            });
+            changeColor(event, options, dicebearVaadin);
+        });
         setAlignItems(Alignment.CENTER);
     }
 

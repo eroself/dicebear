@@ -135,5 +135,7 @@
     <orderEntry type="library" name="Maven: jakarta.activation:jakarta.activation-api:1.2.2" level="project" />
     <orderEntry type="library" name="Maven: org.reactivestreams:reactive-streams:1.0.3" level="project" />
     <orderEntry type="library" name="Maven: com.wontlost:dicebear-vaadin:1.0.0" level="project" />
+    <orderEntry type="library" name="Maven: org.vaadin.addon:paper-range-slider:1.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.webjars.bowergithub.polymerelements:paper-slider:3.0.2" level="project" />
   </component>
 </module>
