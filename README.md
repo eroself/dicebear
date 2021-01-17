@@ -1,2 +1,2 @@
-# jdenticon
-jdenticon example
+# dicebear
+dicebear example
