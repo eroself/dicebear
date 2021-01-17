@@ -16,7 +16,7 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.server.StreamRegistration;
 import com.vaadin.flow.server.StreamResource;
-import com.wontlost.dicebear.Constants.*;
+import com.wontlost.dicebear.Constants.Style;
 import com.wontlost.dicebear.DicebearVaadin;
 import com.wontlost.dicebear.Options;
 import org.vaadin.addon.sliders.PaperSlider;
@@ -40,6 +40,8 @@ public class DicebearView extends VerticalLayout {
 
     private Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
 
+    PaperSlider radius = new PaperSlider(0, 50, 0);
+
     private boolean isNumeric(String strNum) {
         if (strNum == null) {
             return false;
@@ -48,7 +50,7 @@ public class DicebearView extends VerticalLayout {
     }
 
     private void changeColor(HasValue.ValueChangeEvent event, Options options, DicebearVaadin dicebearVaadin) {
-        if(event.getValue().equals(Style.initials)) {
+        if(event.getValue().equals(Style.initials) || radius.getValue().compareTo(0)>0) {
             options.setBackground(nextColor());
         }else{
             options.setBackground("transparent");
@@ -79,9 +81,13 @@ public class DicebearView extends VerticalLayout {
         select.setItemLabelGenerator(Style::name);
         select.setItems(styleList);
         select.setValue(Style.avataaars);
-        PaperSlider radius = new PaperSlider(0, 50, 0);
 
         add(new H3("Try it yourself"));
+//        DicebearVaadin dicebearVaadin/* = new DicebearVaadin()*/;
+//        Image image = new Image("icons/icon.png", "image");
+//		image.setWidth("30");
+//		image.setHeight("30");
+//        dicebearVaadin = new DicebearVaadin(image);
         DicebearVaadin dicebearVaadin = new DicebearVaadin();
         dicebearVaadin.setValue("wontlost");
         dicebearVaadin.setStyle(Style.avataaars);
@@ -97,6 +103,7 @@ public class DicebearView extends VerticalLayout {
         radius.addValueChangeListener(e->{
             options.setRadius(radius.getValue());
             options.setMargin(radius.getValue()/5);
+            changeColor(e, options, dicebearVaadin);
             dicebearVaadin.setOptions(options);
         });
         size.setValueChangeMode(ValueChangeMode.EAGER);

@@ -122,7 +122,7 @@
           <element id="library" level="project" name="Maven: jakarta.xml.bind:jakarta.xml.bind-api:2.3.3" />
           <element id="library" level="project" name="Maven: jakarta.activation:jakarta.activation-api:1.2.2" />
           <element id="library" level="project" name="Maven: org.reactivestreams:reactive-streams:1.0.3" />
-          <element id="library" level="project" name="Maven: com.wontlost:dicebear-vaadin:1.0.0" />
+          <element id="library" level="project" name="Maven: com.wontlost:dicebear-vaadin:1.0.2" />
           <element id="library" level="project" name="Maven: org.vaadin.addon:paper-range-slider:1.1.1" />
           <element id="library" level="project" name="Maven: org.webjars.bowergithub.polymerelements:paper-slider:3.0.2" />
         </element>
