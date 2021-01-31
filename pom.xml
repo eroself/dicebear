@@ -20,7 +20,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <failOnMissingWebXml>false</failOnMissingWebXml>
         <!-- Dependencies -->
-        <vaadin.version>14.4.5</vaadin.version>
+        <vaadin.version>14.4.6</vaadin.version>
 
         <!-- Plugins -->
         <frontend.maven.plugin.version>1.6</frontend.maven.plugin.version>
@@ -224,7 +224,7 @@
         <dependency>
             <groupId>com.wontlost</groupId>
             <artifactId>dicebear-vaadin</artifactId>
-            <version>1.0.2</version>
+            <version>1.0.3</version>
         </dependency>
 
         <dependency>

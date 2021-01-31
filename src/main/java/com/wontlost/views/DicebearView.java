@@ -90,6 +90,8 @@ public class DicebearView extends VerticalLayout {
 //        dicebearVaadin = new DicebearVaadin(image);
         DicebearVaadin dicebearVaadin = new DicebearVaadin();
         dicebearVaadin.setValue("wontlost");
+        dicebearVaadin.setWidth("100px");
+        dicebearVaadin.setHeight("100px");
         dicebearVaadin.setStyle(Style.avataaars);
 //        options.setBackground("white").setDataUri(false)
 //                .setWidth(100).setHeight(100).setMargin(0).setRadius(50);
