@@ -33,9 +33,9 @@ import java.util.regex.Pattern;
  */
 @JsModule("./styles/shared-styles.js")
 @Viewport("width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes, viewport-fit=cover")
-@PWA(name = "Dicebear", shortName = "Dicebear")
+@PWA(name = "Avatar", shortName = "Avatar")
 @Route(value = "")
-@PageTitle("Dicebear")
+@PageTitle("Avatar")
 public class DicebearView extends VerticalLayout {
 
     private Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");

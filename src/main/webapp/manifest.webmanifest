@@ -1,10 +1,10 @@
 {
-  "name": "VIDEO",
-  "short_name": "VIDEO",
+  "name": "Avartar",
+  "short_name": "Avartar",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#fff",
-  "description": "VIDEO implementation on ckeditor and vaadin.",
+  "description": "Avartar implementation.",
   "icons": [{
     "src": "icons/icon-16x16.png",
     "sizes": "16x16",
@@ -32,6 +32,6 @@
   }],
   "related_applications": [{
     "platform": "chrome",
-    "url": "https://www.wontlost.com/ckeditor/"
+    "url": "https://www.wontlost.com/dicebear/"
   }]
 }
